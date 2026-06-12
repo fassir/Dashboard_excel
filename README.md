@@ -1,86 +1,199 @@
-O objetivo deste Repositório é criar um dashboard de vendas em Excel, transformando dados brutos em informações visuais claras e úteis para análise de desempenho e tomada de decisão.
+<div align="center">
 
-## **O que fazer**
-- **Descrição:**: Criar um dashboard de vendas no Excel que responda às perguntas de negócio listadas abaixo e entregue um arquivo Excel com o dashboard pronto.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1F9BD4,50:2E75B6,100:16265F&height=200&section=header&text=Dashboard%20de%20Vendas%20Excel&fontSize=44&fontColor=ffffff&fontAlignY=38&desc=Análise%20Completa%20de%20Planos%20e%20Jogadores%20em%20Excel&descAlignY=58&descSize=18" width="100%"/>
 
-## **Perguntas que o dashboard deve responder**
-- **Total de vendas do plano anual**: soma das vendas relacionadas ao plano anual.
-- **Total de vendas do plano anual — é auto-renovável?**: indicar se cada venda do plano anual é auto-renovável e agrupar os totais por tipo (renovável vs não renovável).
-- **Total de vendas do EA Play**: soma das vendas/assinaturas do EA Play.
-- **Total de vendas do Minecraft Season Pass**: soma das vendas do Minecraft Season Pass.
-- **Quantidade de jogadores por gênero**: total masculino, feminino e total geral (independente do gênero).
-- **Total de jogadores por tipo de plano**: agrupar quantidade de jogadores por cada tipo de plano/assinatura.
+[![Excel](https://img.shields.io/badge/Microsoft%20Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)](https://microsoft.com/excel)
+[![Data Analysis](https://img.shields.io/badge/Análise%20de%20Dados-Dashboard-blue?style=for-the-badge)](https://github.com/fassir)
+[![KPIs](https://img.shields.io/badge/KPIs-Indicadores-orange?style=for-the-badge)](https://github.com/fassir)
 
-## **Requisitos**
-- **Arquivo entregue:**: arquivo Excel `.xlsx` com o dashboard e dados de exemplo.
-- **Versão recomendada:**: Excel 2016+ ou Microsoft 365 para melhor compatibilidade.
+[![Excel](https://img.shields.io/badge/Excel-217346?style=flat-square&logo=microsoftexcel&logoColor=white)](https://microsoft.com/excel)
+[![Charts](https://img.shields.io/badge/Gráficos-Dashboard-1565C0?style=flat-square)](https://github.com/fassir)
+[![KPIs](https://img.shields.io/badge/KPIs-FF6F00?style=flat-square)](https://github.com/fassir)
+[![Pivot](https://img.shields.io/badge/Tabela%20Dinâmica-4CAF50?style=flat-square)](https://github.com/fassir)
 
-## **Estrutura sugerida do Excel**
-- **Aba `Assets`**: Lugar onde temos as cores padrão usadas e imagens.
-- **Aba `Bases`**: tabela com os dados brutos (datas, ID do usuário, tipo de plano, valor, renovação automática, gênero, produto, etc.).
-- **Aba `Cálculos`**: tabelas auxiliares e cálculos (KPIs e colunas calculadas).
-- **Aba `Dashboard`**: gráficos, KPIs e visualizações finais.
+</div>
 
-## **Como abrir e usar (passos rápidos)**
-- **1. Abrir o arquivo:**: clique duas vezes no arquivo `.xlsx` para abrir no Excel.
-- **2. Habilitar conteúdo:**: se aparecer aviso de segurança, clique em `Habilitar Conteúdo` para permitir macros e conexões.
+---
 
-## **Boas práticas e recomendações**
-- **Formatação de colunas**: garanta que colunas de data e numéricas estejam no formato correto para evitar erros em cálculos e gráficos.
-- **Nomes de intervalo**: use nomes de intervalo ou tabelas do Excel (`Ctrl+T`) para facilitar referências em fórmulas.
+## 🎯 Sobre o Projeto
 
-## **Entregáveis esperados**
-- **`Arquivo_final.xlsx`**: planilha com o dashboard final.
-- **`README.md`**: este arquivo com instruções e explicações.
-- **`imagens/`**: capturas de tela demonstrando o dashboard e insights.
+Dashboard de **análise de vendas de planos e assinaturas** desenvolvido inteiramente no **Microsoft Excel**, organizado em 4 abas funcionais com separação clara entre dados brutos, cálculos auxiliares e visualização final. O arquivo `Arquivo_final.xlsx` responde perguntas-chave sobre receita por tipo de plano, perfil dos jogadores e performance por categoria.
 
-![imagem](imagens/imagem.png)
+---
 
-## **Construção Do Dashboard**
+## 🗂️ Estrutura do Arquivo
 
-	- Tabela Dinâmica 1: filtro por **tipo de mensalidade**, **tipo de plano**, **sexo** com o total de reais recebidos por atualização automatica do serviço.
-    - Tabela Dinâmica 2: filtro por **tipo de mensalidade**, **tipo de plano**, **sexo** com o total IDs por assinantes do serviço EA Play Season Pass com valor sim.
-    - Tabela Dinâmica 2: filtro por **tipo de mensalidade**, **tipo de plano**, **sexo** com o total IDs por assinantes do serviço Minecraft Season Pass com valor sim.
+```
+Arquivo_final.xlsx
+├── 📋 Assets        → Paleta de cores, ícones e imagens da marca
+├── 📊 Bases         → Dados brutos de vendas e cadastros
+├── 🔢 Cálculos      → KPIs, fórmulas auxiliares e tabelas dinâmicas
+└── 📈 Dashboard     → Página final com gráficos e indicadores
+```
 
-	- Para preencher a coluna `Sexo` foi necessário extrair o prenome a partir da coluna `Nome` e mapear para `Masculino` ou `Feminino` usando uma tabela de referência de prenomes (ou regra/lookup definida no projeto).
-	- Exemplo de abordagem utilizada (extrair primeiro nome + PROCV em uma tabela de prenomes):
+---
 
-		`=SEERRO(PROCV(ESQUERDA(A2;PROCURAR(" ";A2)-1); Prenomes!$A:$B; 2; FALSO); 0)`
+## 💡 Tecnologias
 
-- **Tratamento de erros (`#REF!` e outros):**
-	- Em várias fórmulas onde havia risco de erro (referências inválidas ou buscas sem correspondência), usamos `SEERRO()` para capturar qualquer erro e retornar um valor padronizado (`0`) — facilitando os cálculos e a criação das Tabelas Dinâmicas.
-- **Observações técnicas:**
+<div align="center">
 
-## **Construção do Dashboard**
-- **Visão geral:** O dashboard foi criado a partir de três Tabelas Dinâmicas principais, cada uma projetada para responder grupos específicos de perguntas e KPIs (receita, contagens por produto e segmentação demográfica).
+[![My Skills](https://skillicons.dev/icons?i=windows&theme=dark)](https://microsoft.com/excel)
 
-- **Tabelas Dinâmicas e filtros usados:**
-	- **Tabela Dinâmica — Receita por Mensalidade:** filtro por `Tipo de Mensalidade` (ex.: mensal, anual) e `Tipo de Plano` — usada para calcular o total de receita por categoria.
-	- **Tabela Dinâmica — Contagem por Plano/Produto:** filtro por `Tipo de Plano` (ex.: EA Play, Minecraft Season Pass, etc.) — usada para contar IDs/assinaturas por produto e comparação entre planos.
-	- **Tabela Dinâmica — Segmentação Demográfica:** filtro por `Sexo` — usada para comparar distribuição de jogadores por gênero e cruzar com tipos de plano.
+</div>
 
-- **Extração do sexo a partir do nome:**
-	- Abordagem: extrair o primeiro nome a partir da coluna `Nome` e fazer lookup em uma tabela de prenomes que contém o gênero associado.
-	- Fórmula de exemplo (Excel em português) que trata casos sem espaço no nome e erros de busca:
+| Tecnologia | Uso |
+|------------|-----|
+| Microsoft Excel | Plataforma completa do dashboard |
+| Tabelas Dinâmicas | Agregações por tipo de plano e gênero |
+| Gráficos Excel | Visualizações no Dashboard final |
+| Fórmulas (SOMASE, CONT.SE, PROCV) | KPIs e cálculos auxiliares |
+| Formatação Condicional | Destaque visual de métricas críticas |
+| Validação de Dados | Integridade nos dados de entrada |
 
-		`=SEERRO(PROCV(ESQUERDA(A2;PROCURAR(" ";A2&" ")-1); Prenomes!$A:$B; 2; FALSO); "Indefinido")`
+---
 
-		- Explicação: `ESQUERDA(...;PROCURAR(" ";A2&" ")-1)` extrai o primeiro prenome mesmo quando não há espaço; `PROCV` busca o gênero na tabela `Prenomes`; `SEERRO` captura `#N/D`, `#REF!` e outros erros, retornando `"Indefinido"` (ou `0`, conforme preferência) para facilitar agregações.
+## 📋 Descrição das Abas
 
-- **Tratamento de erros (`#REF!`, `#N/D`, etc.):**
-	- Sempre que uma fórmula pode gerar erro por ausência de correspondência ou referência inválida, usamos `SEERRO()` para retornar um valor padrão (`0` ou `"Indefinido"`) — isso evita que erros interrompam as Tabelas Dinâmicas e permite somas/contagens consistentes.
+<details>
+<summary><strong>🎨 Aba Assets — Identidade Visual</strong></summary>
 
-- **Observações técnicas e boas práticas:**
-	- Converta os dados em **Tabelas do Excel** (`Ctrl+T`) para que referências estruturadas e Tabelas Dinâmicas atualizem automaticamente ao inserir novos registros.
-	- Use **Intervalos Nomeados** para ranges estáticos (ex.: a tabela `Prenomes`) e fórmulas com referências estruturadas quando possível.
-	- Para atualizar manualmente as Tabelas Dinâmicas: `Dados → Atualizar Tudo` ou clique com o botão direito na Tabela Dinâmica e escolha `Atualizar`.
+```
+Conteúdo:
+  ├── Paleta de cores oficial do dashboard
+  │     Primary:   #1F9BD4 (azul)
+  │     Secondary: #2E75B6 (azul escuro)
+  │     Accent:    #F2C811 (amarelo)
+  │     Neutral:   #F5F5F5 (cinza claro)
+  ├── Ícones dos tipos de plano
+  ├── Logos e imagens de suporte visual
+  └── Referência de tipografia (Calibri, tamanhos)
+```
 
-## **Conclusão**
-- **Resumo dos resultados:** A construção com três Tabelas Dinâmicas, combinada com a extração de sexo a partir do prenome e o tratamento robusto de erros via `SEERRO()`, permite responder às perguntas do desafio (totais por plano, renovação automática, vendas por produto e segmentação por gênero) de forma confiável e com fácil atualização dos dados.
-- **Limitações e cuidados:** A classificação de gênero por prenome depende da qualidade e cobertura da tabela de `Prenomes` — nomes ambíguos, apelidos ou culturas diferentes podem gerar classificações incorretas; por isso retornamos `"Indefinido"` quando não houver correspondência.
-- **Próximos passos sugeridos:**
-	- Expandir a lista de prenomes e revisar manualmente casos `Indefinido`.
-	- Adicionar validações/limpeza dos dados de entrada (remoção de duplicatas, normalização de nomes).
-	- Automatizar a atualização das Tabelas Dinâmicas com uma macro simples (opcional, gerando um `.xlsm`).
-	- Incluir uma seção de documentação das principais fórmulas e nomes de intervalo para facilitar manutenção.
-	- Recomenda-se usar Intervalos Nomeados ou Converter os dados em Tabela do Excel (`Ctrl+T`) para que as Tabelas Dinâmicas atualizem corretamente ao inserir novos registros.
+</details>
+
+<details>
+<summary><strong>📊 Aba Bases — Dados Brutos</strong></summary>
+
+```
+Estrutura da tabela de vendas:
+  ID_Venda | Data | Tipo_Plano | Genero_Jogador | Valor | Status
+
+Tipos de plano presentes:
+  • Plano Anual
+  • Auto-Renovação
+  • EA Play
+  • Minecraft Season Pass
+
+Campos de jogador:
+  • Gênero (Masculino / Feminino / Não informado)
+  • Categoria de assinatura
+  • Data de aquisição
+```
+
+</details>
+
+<details>
+<summary><strong>🔢 Aba Cálculos — KPIs e Auxiliares</strong></summary>
+
+```
+KPIs calculados:
+  ┌──────────────────────────────────────────────────┐
+  │  Total de Vendas — Plano Anual                   │
+  │  Total de Vendas — Auto-Renovação                │
+  │  Total de Vendas — EA Play                       │
+  │  Total de Vendas — Minecraft Season Pass         │
+  │  Quantidade de Jogadores por Gênero              │
+  │  Total por Tipo de Plano (todos)                 │
+  └──────────────────────────────────────────────────┘
+
+Fórmulas principais:
+  =SOMASE(Bases[Tipo_Plano];"Plano Anual";Bases[Valor])
+  =CONT.SE(Bases[Genero_Jogador];"Masculino")
+  =SOMASES(Bases[Valor];Bases[Status];"Ativo";
+           Bases[Tipo_Plano];A2)
+```
+
+</details>
+
+---
+
+## 📈 Aba Dashboard — Visualização Final
+
+<div align="center">
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│  🏆 DASHBOARD DE VENDAS — PLANOS E ASSINATURAS                  │
+├────────────────────────────────────────────────────────────────── ┤
+│  💰 Total Anual  │ 🔄 Auto-Renovação │ 🎮 EA Play │ ⛏️ Minecraft │
+│  [KPI Card]      │  [KPI Card]        │ [KPI Card] │  [KPI Card]  │
+├──────────────────────────────────────────────────────────────────┤
+│  📊 Receita por Tipo de Plano    │  👥 Jogadores por Gênero       │
+│  [Barras horizontais ordenadas]  │  [Pizza — M/F/Não informado]   │
+├──────────────────────────────────────────────────────────────────┤
+│  📅 Evolução Mensal de Vendas    │  🏅 Ranking por Plano          │
+│  [Gráfico de Linha]              │  [Tabela formatada]            │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+</div>
+
+---
+
+## ❓ Perguntas Respondidas pelo Dashboard
+
+| Pergunta | Onde encontrar |
+|----------|---------------|
+| Qual o total de vendas do Plano Anual? | KPI Card — Plano Anual |
+| Qual o total de Auto-Renovação? | KPI Card — Auto-Renovação |
+| Qual o total de EA Play? | KPI Card — EA Play |
+| Qual o total do Minecraft Season Pass? | KPI Card — Minecraft |
+| Quantos jogadores por gênero? | Gráfico Pizza — Gênero |
+| Qual o total por tipo de plano? | Barras horizontais |
+
+---
+
+## 🔧 Boas Práticas Aplicadas
+
+```
+✅ Separação de responsabilidades (Assets / Bases / Cálculos / Dashboard)
+✅ Sem fórmulas hardcoded no Dashboard — todas referenciadas de Cálculos
+✅ Tabela estruturada (Ctrl+T) na aba Bases para expansão automática
+✅ Nomes definidos para ranges críticos
+✅ Proteção de planilha nas abas Cálculos e Dashboard
+✅ Formatação condicional nos KPIs (verde = acima da meta)
+✅ Gráficos vinculados a ranges nomeados (não a células fixas)
+✅ Paleta de cores consistente via aba Assets
+```
+
+---
+
+## 🚀 Como Usar
+
+1. **Baixe** `Arquivo_final.xlsx`
+2. **Abra** no Microsoft Excel (versão 2016 ou superior recomendada)
+3. **Navegue** pelas abas na ordem: Assets → Bases → Cálculos → Dashboard
+4. Para **atualizar os dados**: edite a aba Bases; Dashboard atualiza automaticamente
+5. Para **adicionar novos tipos de plano**: atualize as listas de validação na aba Bases
+
+```
+⚠️ Requisito mínimo: Microsoft Excel 2016
+   LibreOffice Calc pode apresentar incompatibilidades com formatação
+```
+
+---
+
+## 👤 Autor
+
+<div align="center">
+
+**Fabio Piassi**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/fabio-piassi)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/fassir)
+
+</div>
+
+---
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:16265F,50:2E75B6,100:1F9BD4&height=120&section=footer" width="100%"/>
